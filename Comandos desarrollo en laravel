@@ -1,0 +1,37 @@
+
+**Lista de comandos**
+https://www.netireki.eus/crear-rest-api-con-laravel-step-1/
+
+https://coderwall.com/p/o73fbq/creating-foreign-key-in-laravel-migrations
+
+* laravel new [nameProject] : crea un nuevo proyecto usando comando de laravel.
+
+* composer create-project --prefer-dist laravel/laravel [nameProject] : Crea un nuevo proyecto usando comando de composer
+
+* php artisan serve : para iniciar servidor de pruebas del proyecto.
+
+* php artisan make:model Article -m : Para crear un modelo en este caso se llamara Article, la -m significa migration.
+
+* php artisan migrate : Para que cambios de los model se vean reflejados en la base de datos.
+
+* php artisan make:controller ArticleController : para crear un controlador en este ejemplo se crea el controlador ArticleController.
+
+* php artisan migrate:refresh : Para refrescar la migracion
+
+* php artisan migrate:reset : Para resetear la migracion
+
+*****Relaciones******
+class Publicacion extends Model
+{
+    protected $fillable = ['post','imagen'];
+    
+    public function comentarios(){
+        return $this->hasMany('App\Comentario', 'publicacions_id', 'id');
+    }
+}
+class Comentario extends Model
+{
+    public function publicacions(){
+        return $this->belongsTo('App\Publicacion', 'publicacions_id', 'id');
+    }
+}
